@@ -46,6 +46,7 @@
 #include "rtl2832-tuner_fc0013.h"
 #include "rtl2832-tuner_fc0012.h"
 #include "rtl2832-tuner_fc2580.h"
+#include "rtl2832-tuner_r820t.h"
 #include "rtl2832-tuner_e4k.h"
 
 ///////////////////////////////////////////////////////////
@@ -178,12 +179,13 @@ static struct _rtl2832_tuner_info
 	ADD_TUNER(e4k),	// Swapped this around with e4000
 	ADD_TUNER(fc0013),
 	ADD_TUNER(fc2580),
+	ADD_TUNER(r820t),
 	ADD_TUNER(fc0012),
 	ADD_TUNER(e4000)
 };
 
 static DEVICE_INFO _rtl2832_devices[] = {	// Tuner does auto-detection (ignores creator hint) by default now!
-	{ "ezcap EzTV",					EZCAP_VID,		EZCAP_PID, 		NULL/*GET_CREATOR_FN(e4000)*/	},
+	{ "ezcap EzTV",					EZCAP_VID,		EZCAP_PID, 		GET_CREATOR_FN(r820t)	},
 	// Use custom tuner name when creating device for ecap EZTV646 FC0013 but same PID: 2838
 	{ "Terratec NOXON (rev 1)",		NOXON_VID,		NOXON_PID, 		GET_CREATOR_FN(fc0013)	},
 	{ "Terratec NOXON (rev 2)", 	NOXON_VID,		NOXON_V2_PID, 	NULL/*GET_CREATOR_FN(e4000)*/	},
